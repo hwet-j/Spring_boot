@@ -1,0 +1,26 @@
+<!-- Header -->
+<!-- fragments/header.html -->
+<header th:fragment="header" id="header" class="alt">
+    <h1><a href="/">Hwet한글</a></h1>
+    <nav>
+        <a href="#menu">Menu</a>
+    </nav>
+</header>
+
+
+<!-- Menu -->
+<!-- fragments/menu.html -->
+<nav th:fragment="menu" id="menu">
+    <div class="inner">
+        <h2>Menu</h2>
+        <ul class="links">
+            <li><a href="/">Home</a></li>
+            <li><a href="../generic.html">Generic</a></li>
+            <li><a href="../elements.html">Elements</a></li>
+            <li><a href="#">Log In</a></li>
+            <li><a href="/account/join">Sign Up</a></li>
+        </ul>
+
+        <a href="#" class="close">Close</a>
+    </div>
+</nav>

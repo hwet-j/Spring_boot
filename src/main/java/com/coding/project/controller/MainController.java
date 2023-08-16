@@ -13,7 +13,7 @@ import java.util.stream.IntStream;
 public class MainController {
     @RequestMapping("/index")
     @ResponseBody       // HTML의 Body요소에 입력 (리턴값을 그대로 표시해줌 - 문자열화 해서 응답함)
-    public String index(){
+    public String index_test(){
         return "Body에 출력?되고ㄴㅁ있습니다 자동으로ㅇㅇasdㅁㄴㅇㄴㅇㅁㄹf";
     }
 
@@ -29,4 +29,10 @@ public class MainController {
                 .mapToObj(i -> "%d * %d = %d".formatted(dan, i, dan * i))
                 .collect(Collectors.joining("<br>"));
     }
+
+    @RequestMapping("/")
+    public String index(){
+        return "index";
+    }
+
 }

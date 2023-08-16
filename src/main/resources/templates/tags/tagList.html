@@ -1,21 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>All Tags</title>
-
-    <link th:href="@{/css/main.css}" rel="stylesheet" type="text/css">
-
+    <link th:href="@{/assets/css/main.css}" rel="stylesheet" type="text/css">
+    <noscript>
+        <link rel="stylesheet" th:href="@{/assets/css/noscript.css}" />
+    </noscript>
 </head>
-<body>
-<h2>All Tags</h2>
-<table>
-    <tr th:each="tag : ${tags}">
-        <td th:text="${tag.nameEng}"></td>
-        <td th:text="${tag.nameKor}"></td>
-        <td><a th:href="@{/tags/update(name=${tag.nameEng})}">Edit</a></td>
-        <td><a th:href="@{/tags/delete(name=${tag.nameEng})}">Delete</a></td>
-    </tr>
-</table>
+<body class="is-preload">
+<div id="page-wrapper">
+    <header th:replace="fragments/header :: header"></header>
+    <nav th:replace="fragments/header :: menu"></nav>
+
+    <section id="wrapper">
+        <header>
+            <div class="inner">
+                <h2>공지사항 태그 목록</h2>
+                <p>테스트 CRUD</p>
+            </div>
+        </header>
+
+        <!-- Content -->
+        <div class="wrapper">
+            <div class="inner">
+                <section>
+                    <h3 class="major">태그정보 / 총 태그수 : </h3>
+                    <div class="table-wrapper">
+                        <table class="alt">
+                            <thead>
+                            <tr>
+                                <th>Name (English)</th>
+                                <th>Name (Korean)</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="tag : ${tags}">
+                                <td th:text="${tag.nameEng}"></td>
+                                <td th:text="${tag.nameKor}"></td>
+                                <td><a th:href="@{/tags/update(name=${tag.nameEng})}">Edit</a></td>
+                                <td><a th:href="@{/tags/delete(name=${tag.nameEng})}">Delete</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+</div>
+
+<section th:replace="fragments/footer :: footer"></section>
+
+<script th:src="@{/assets/js/jquery.min.js}"></script>
+<script th:src="@{/assets/js/jquery.scrollex.min.js}"></script>
+<script th:src="@{/assets/js/browser.min.js}"></script>
+<script th:src="@{/assets/js/breakpoints.min.js}"></script>
+<script th:src="@{/assets/js/util.js}"></script>
+<script th:src="@{/assets/js/main.js}"></script>
 </body>
 </html>

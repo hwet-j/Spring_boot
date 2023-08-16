@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Hwet Main</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link th:href="@{/assets/css/main.css}" rel="stylesheet" />
+</head>
+<body class="landing is-preload">
+
+    <!-- Page Wrapper -->
+    <div id="page-wrapper">
+
+        <!-- navigation -->
+        <div th:replace="fragments/header :: header"></div>
+
+        <!-- Banner -->
+        <!-- Banner -->
+        <section id="banner">
+            <h2>메인페이지</h2>
+            <p>Another fine responsive site template freebie by HTML5 UP.</p>
+            <ul class="actions special">
+                <li><a href="#" class="button primary">Sign Up</a></li>
+                <li><a href="#" class="button">Learn More</a></li>
+            </ul>
+        </section>
+
+        <!-- Wrapper -->
+        <section id="wrapper">
+
+            <!-- One -->
+            <section id="one" class="wrapper spotlight style1">
+                <div class="inner">
+                    <a href="#" class="image"><img th:src="@{/css/images/pic01.jpg}" alt="" /></a>
+                    <div class="content">
+                        <h2 class="major">Magna arcu feugiat</h2>
+                        <p>Lorem ipsum dolor sit amet, etiam lorem adipiscing elit. Cras turpis ante, nullam sit amet turpis non, sollicitudin posuere urna. Mauris id tellus arcu. Nunc vehicula id nulla dignissim dapibus. Nullam ultrices, neque et faucibus viverra, ex nulla cursus.</p>
+                        <a href="#" class="special">Learn more</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <section th:replace="fragments/footer :: footer"></section>
+        </section>
+    </div>
+
+    <!-- Scripts -->
+    <script th:src="@{/assets/js/jquery.min.js}"></script>
+    <script th:src="@{/assets/js/jquery.scrollex.min.js}"></script>
+    <script th:src="@{/assets/js/browser.min.js}"></script>
+    <script th:src="@{/assets/js/breakpoints.min.js}"></script>
+    <script th:src="@{/assets/js/util.js}"></script>
+    <script th:src="@{/assets/js/main.js}"></script>
+
+</body>
+</html>
