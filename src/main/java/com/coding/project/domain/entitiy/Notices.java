@@ -1,33 +1,52 @@
 package com.coding.project.domain.entitiy;
 
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 @Entity
-@Table(name = "notice")
+@Table(name = "notices")
 @Getter
+@Setter
 public class Notices {
-    @Id @GeneratedValue
-    @Column(name = "id")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")        // 컬럼명이 필드명과 동일하면 지정하지 않아도 됨
     private Integer id;
 
-    @Column(length = 255)
+    @Column(length = 255, nullable = false)     // 길이 설정과 NOT NULL조건
     private String title;
-    @Column()
-    private String content;
-    private String image_path;
-    private String author;
-    private String category;
-    private String status;
-    private String tags;
-    private LocalDateTime created_at;  // "created_at"에 해당하는 필드 (시간 포함)
-    private LocalDateTime updated_at;  // "updated_at"에 해당하는 필드 (시간 포함)
-    private LocalDate end_date;  // "end_date"에 해당하는 필드 (시간 제외)
 
+    @Column(nullable = false, columnDefinition = "TEXT")    // 데이터 타입 명시
+    private String content;
+
+    private String imagePath;
+
+    @Column(length = 100)
+    private String author;
+
+    @Column(length = 50)
+    private String category;
+
+    @Column(length = 20)
+    private String status;
+
+    @Column(columnDefinition = "JSON")
+    private String tags;
+
+    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    private LocalDateTime createdAt;
+
+    private LocalDateTime updatedAt;
+
+    private LocalDate endDate;
+
+    @ManyToOne(fetch = FetchType.LAZY)      // 다대일 관계
+    @JoinColumn(name = "category", referencedColumnName = "name", insertable = false, updatable = false)
+    private NoticesCategory noticesCategory;
 }

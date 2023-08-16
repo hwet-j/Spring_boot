@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Tag Form</title>
+</head>
+<body>
+<h2>Tag Form</h2>
+<form action="/tags/insert" method="post" th:object="${noticesTagsDTO}">
+    <label for="nameEng">Name (English)</label>
+    <input type="text" id="nameEng" name="nameEng" required>
+    <br>
+    <label for="nameKor">Name (Korean)</label>
+    <input type="text" id="nameKor" name="nameKor" required>
+    <br>
+    <button type="submit">Save</button>
+</form>
+</body>
+</html>

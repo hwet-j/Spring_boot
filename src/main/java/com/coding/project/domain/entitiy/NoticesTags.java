@@ -6,11 +6,12 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "notices_categories")
+@Table(name = "notices_tags")
 @Getter
 @Setter
-public class NoticesCategory {
+public class NoticesTags {
     @Id
-    @Column(length = 50)
-    private String name;
+    private String nameEng;
+
+    private String nameKor;
 }

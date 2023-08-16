@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ArticleCategoryDTO {
+public class NoticesCategoryDTO {
     private String name;
 
 }
