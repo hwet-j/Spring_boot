@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Tags</title>
+
+    <link th:href="@{/css/main.css}" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+<h2>All Tags</h2>
+<table>
+    <tr th:each="tag : ${tags}">
+        <td th:text="${tag.nameEng}"></td>
+        <td th:text="${tag.nameKor}"></td>
+        <td><a th:href="@{/tags/update(name=${tag.nameEng})}">Edit</a></td>
+        <td><a th:href="@{/tags/delete(name=${tag.nameEng})}">Delete</a></td>
+    </tr>
+</table>
+</body>
+</html>
