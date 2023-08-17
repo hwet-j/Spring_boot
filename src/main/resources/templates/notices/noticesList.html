@@ -7,6 +7,29 @@
     <noscript>
         <link rel="stylesheet" th:href="@{/assets/css/noscript.css}" />
     </noscript>
+
+    <style>
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        /* 첫 번째 컬럼 너비와 정렬 설정 */
+        th:nth-child(1), td:nth-child(1) {
+            width: 80%;
+        }
+
+        /* 두 번째 컬럼 너비와 정렬 설정 */
+        th:nth-child(2), td:nth-child(2) {
+            width: 20%;
+            text-align: right;
+        }
+    </style>
+
 </head>
 <body class="is-preload">
 <div id="page-wrapper">
@@ -16,8 +39,8 @@
     <section id="wrapper">
         <header>
             <div class="inner">
-                <h2>공지사항 태그 목록</h2>
-                <p>테스트 CRUD</p>
+                <h2>공지사항 목록</h2>
+                <p></p>
             </div>
         </header>
 
@@ -25,23 +48,21 @@
         <div class="wrapper">
             <div class="inner">
                 <section>
-                    <h3 class="major">태그정보 / 총 태그수 : </h3>
+                    <h3 class="major">공지사항 : </h3>
                     <div class="table-wrapper">
-                        <table class="alt">
+                        <table>
                             <thead>
                             <tr>
-                                <th>Name (English)</th>
-                                <th>Name (Korean)</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
+                                <th>제목</th>
+                                <th>등록일</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr th:each="tag : ${tags}">
-                                <td th:text="${tag.nameEng}"></td>
-                                <td th:text="${tag.nameKor}"></td>
-                                <td><a th:href="@{/tags/update(name=${tag.nameEng})}">Edit</a></td>
-                                <td><a th:href="@{/tags/delete(name=${tag.nameEng})}">Delete</a></td>
+                            <tr th:each="notice : ${notices}">
+                                <td th:text="${notice.title}"></td>
+                                <td>
+                                    <span th:text="${#temporals.format(notice.createdAt, 'yyyy-MM-dd')}"></span>
+                                </td>
                             </tr>
                             </tbody>
                         </table>
@@ -61,4 +82,5 @@
 <script th:src="@{/assets/js/util.js}"></script>
 <script th:src="@{/assets/js/main.js}"></script>
 </body>
+
 </html>

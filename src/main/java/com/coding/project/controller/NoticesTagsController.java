@@ -3,7 +3,9 @@ package com.coding.project.controller;
 
 import com.coding.project.domain.entitiy.NoticesTags;
 import com.coding.project.dto.NoticesTagsDTO;
+import com.coding.project.global.exception.TagNotFoundException;
 import com.coding.project.service.NoticesTagsService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,8 +13,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+
+@Slf4j
 @RequestMapping("/tags")
+@Controller
 public class NoticesTagsController {
 
     private final NoticesTagsService noticesTagsService;
@@ -42,8 +46,9 @@ public class NoticesTagsController {
     @GetMapping("/list")
     public String getAllTags(Model model) {
         List<NoticesTags> tags = noticesTagsService.getAllTags();
+        // log.info("tags={}", tags);
         model.addAttribute("tags", tags);
-        return "tags/tagList";
+        return "notices/tags/tagList";
     }
 
     // 수정 폼으로 이동
@@ -51,11 +56,11 @@ public class NoticesTagsController {
     public String showUpdateForm(@RequestParam("name") String nameEng, Model model) {
         NoticesTags tag = noticesTagsService.findByEnglishName(nameEng);
         if (tag == null) {
-            // 처리할 예외 상황을 처리하거나, 적절한 에러 페이지로 리다이렉트
-            return "error"; // 예시일 뿐, 실제 에러 핸들링 방법을 사용해야함
+            // 예시일 뿐, 좀 더 보완해서 제대로 작동하도록 해야함
+            throw new TagNotFoundException("태그를 찾지 못했습니다.");
         }
         model.addAttribute("tag", tag);
-        return "tags/tagUpdate";
+        return "notices/tags/tagUpdate";
     }
 
     // 수정 처리

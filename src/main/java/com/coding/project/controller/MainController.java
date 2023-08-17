@@ -1,6 +1,8 @@
 package com.coding.project.controller;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,9 +16,12 @@ public class MainController {
     @RequestMapping("/index")
     @ResponseBody       // HTML의 Body요소에 입력 (리턴값을 그대로 표시해줌 - 문자열화 해서 응답함)
     public String index_test(){
+
         return "Body에 출력?되고ㄴㅁ있습니다 자동으로ㅇㅇasdㅁㄴㅇㄴㅇㅁㄹf";
     }
 
+    @Autowired
+    ApplicationContext applicationContext;
 
     @GetMapping("/gugudan")
     @ResponseBody       // HTML의 Body요소에 입력 (리턴값을 그대로 표시해줌 - 문자열화 해서 응답함)
@@ -32,6 +37,8 @@ public class MainController {
 
     @RequestMapping("/")
     public String index(){
+        // applicationContext.getBean(Controller);
+
         return "index";
     }
 

@@ -1,5 +1,6 @@
 package com.coding.project.domain.entitiy;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,6 +10,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "notices")
 @Getter
@@ -31,7 +33,7 @@ public class Notices {
     private String author;
 
     @Column(length = 50)
-    private String category;
+    private Integer category;
 
     @Column(length = 20)
     private String status;
@@ -47,6 +49,6 @@ public class Notices {
     private LocalDate endDate;
 
     @ManyToOne(fetch = FetchType.LAZY)      // 다대일 관계
-    @JoinColumn(name = "category", referencedColumnName = "name", insertable = false, updatable = false)
+    @JoinColumn(name = "category", referencedColumnName = "id", insertable = false, updatable = false)
     private NoticesCategory noticesCategory;
 }

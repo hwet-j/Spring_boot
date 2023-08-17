@@ -18,7 +18,7 @@ public class NoticesDTO {
     private String content;
     private String imagePath;
     private String author;
-    private String category;
+    private Integer category;
     private String status;
     private String tags;
     private LocalDateTime createdAt;

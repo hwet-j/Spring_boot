@@ -10,6 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class NoticesTagsDTO {
+    private Integer id;
     private String nameEng;
     private String nameKor;
 }
