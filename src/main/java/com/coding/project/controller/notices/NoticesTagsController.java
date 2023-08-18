@@ -1,12 +1,12 @@
-package com.coding.project.controller;
+package com.coding.project.controller.notices;
 
 
-import com.coding.project.domain.entitiy.NoticesTags;
-import com.coding.project.dto.NoticesTagsDTO;
+import com.coding.project.domain.entitiy.notices.NoticesTags;
+import com.coding.project.dto.notices.NoticesTagsDTO;
 import com.coding.project.global.exception.TagNotFoundException;
-import com.coding.project.service.NoticesTagsService;
+import com.coding.project.service.notices.NoticesTagsServiceImpl;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,14 +17,10 @@ import java.util.List;
 @Slf4j
 @RequestMapping("/tags")
 @Controller
+@RequiredArgsConstructor
 public class NoticesTagsController {
 
-    private final NoticesTagsService noticesTagsService;
-
-    @Autowired
-    public NoticesTagsController(NoticesTagsService noticesTagsService) {
-        this.noticesTagsService = noticesTagsService;
-    }
+    private final NoticesTagsServiceImpl noticesTagsService;
 
     @PostMapping("/insert")
     public String saveTags(@ModelAttribute NoticesTagsDTO noticesTagsDTO) {

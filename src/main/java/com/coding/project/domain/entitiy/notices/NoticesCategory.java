@@ -1,4 +1,4 @@
-package com.coding.project.domain.entitiy;
+package com.coding.project.domain.entitiy.notices;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

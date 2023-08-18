@@ -1,4 +1,4 @@
-package com.coding.project.dto;
+package com.coding.project.dto.notices;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,5 +24,6 @@ public class NoticesDTO {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private LocalDate endDate;
+    private boolean visible;
     private NoticesCategoryDTO noticesCategory;
 }

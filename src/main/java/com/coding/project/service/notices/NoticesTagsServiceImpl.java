@@ -1,23 +1,19 @@
-package com.coding.project.service;
+package com.coding.project.service.notices;
 
 
-import com.coding.project.domain.entitiy.NoticesTags;
-import com.coding.project.dto.NoticesTagsDTO;
-import com.coding.project.repository.NoticesTagsRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.coding.project.domain.entitiy.notices.NoticesTags;
+import com.coding.project.dto.notices.NoticesTagsDTO;
+import com.coding.project.repository.notices.NoticesTagsRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class NoticesTagsService {
+@RequiredArgsConstructor
+public class NoticesTagsServiceImpl implements NoticesTagsService {
 
     private final NoticesTagsRepository noticesTagsRepository;
-
-    @Autowired
-    public NoticesTagsService(NoticesTagsRepository noticesTagsRepository) {
-        this.noticesTagsRepository = noticesTagsRepository;
-    }
 
     public void saveTags(NoticesTagsDTO noticesTagsDTO) {
         NoticesTags tag = new NoticesTags();

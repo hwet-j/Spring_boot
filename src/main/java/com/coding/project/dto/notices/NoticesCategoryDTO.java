@@ -1,4 +1,4 @@
-package com.coding.project.dto;
+package com.coding.project.dto.notices;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

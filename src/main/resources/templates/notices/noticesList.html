@@ -18,7 +18,7 @@
             width: 100%;
         }
 
-        /* 첫 번째 컬럼 너비와 정렬 설정 */
+        /* 첫 번째 컬럼 너비 설정 */
         th:nth-child(1), td:nth-child(1) {
             width: 80%;
         }
@@ -59,13 +59,42 @@
                             </thead>
                             <tbody>
                             <tr th:each="notice : ${notices}">
-                                <td th:text="${notice.title}"></td>
+                                <td>
+                                    <span th:text=" '[' + ${notice.noticesCategory.name} + '] ' + ${notice.title} "></span>
+                                </td>
                                 <td>
                                     <span th:text="${#temporals.format(notice.createdAt, 'yyyy-MM-dd')}"></span>
                                 </td>
                             </tr>
                             </tbody>
                         </table>
+
+
+                        <ul class="pagination" th:if="${notices.totalPages > 1}">
+                            <li th:if="${notices.hasPrevious}">
+                                <a th:href="@{/notices/list(page=0)}" class="button small">First</a>
+                            </li>
+                            <li th:if="${notices.hasPrevious}">
+                                <a th:href="@{/notices/list(page=${notices.number - 1})}" class="button small">Prev</a>
+                            </li>
+
+                            <li th:each="pageNumber : ${#numbers.sequence(0, notices.totalPages - 1)}">
+
+                                <a th:if="${pageNumber >= notices.number - 4 and pageNumber <= notices.number + 4}"
+                                   th:classappend="${pageNumber == notices.number} ? 'page active' : 'page'"
+                                   th:href="@{/notices/list(page=${pageNumber})}"
+                                   th:text="${pageNumber + 1}"></a>
+                            </li>
+
+                            <li th:if="${notices.hasNext}">
+                                <a th:href="@{/notices/list(page=${notices.number + 1})}" class="button small">Next</a>
+                            </li>
+                            <li th:if="${notices.hasNext}">
+                                <a th:href="@{/notices/list(page=${notices.totalPages - 1})}" class="button small">Last</a>
+                            </li>
+                        </ul>
+
+
                     </div>
                 </section>
             </div>

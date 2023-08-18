@@ -1,30 +1,27 @@
-package com.coding.project.controller;
+package com.coding.project.controller.notices;
 
 
-import com.coding.project.domain.entitiy.Notices;
-import com.coding.project.dto.NoticesDTO;
-import com.coding.project.dto.NoticesTagsDTO;
-import com.coding.project.service.NoticesService;
+import com.coding.project.domain.entitiy.notices.Notices;
+import com.coding.project.dto.notices.NoticesDTO;
+import com.coding.project.dto.notices.NoticesTagsDTO;
+import com.coding.project.service.notices.NoticesService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 
 @Slf4j
 @RequestMapping("/notices")
 @Controller
+@RequiredArgsConstructor
 public class NoticesController {
 
     private final NoticesService noticesService;
-
-    @Autowired
-    public NoticesController(NoticesService noticesService) {
-        this.noticesService = noticesService;
-    }
 
     @PostMapping("/insert")
     public String saveNotices(@ModelAttribute NoticesDTO noticesDTO) {
@@ -36,11 +33,16 @@ public class NoticesController {
         return "tags/tagForm";
     }
 
-    // 리스트
+
     @GetMapping("/list")
-    public String getAllNotices(Model model) {
-        List<Notices> notices = noticesService.getAllNotices();
-        model.addAttribute("notices", notices);
+    public String getAllNotices(Model model,
+                                @RequestParam(defaultValue = "0") int page,
+                                @RequestParam(defaultValue = "10") int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Notices> noticesPage = noticesService.getAllNotices(pageable);
+        System.out.println(noticesPage.getSize());
+
+        model.addAttribute("notices", noticesPage);
         return "notices/noticesList";
     }
 

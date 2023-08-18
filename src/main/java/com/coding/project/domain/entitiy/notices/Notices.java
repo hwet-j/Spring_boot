@@ -1,4 +1,4 @@
-package com.coding.project.domain.entitiy;
+package com.coding.project.domain.entitiy.notices;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -47,6 +47,9 @@ public class Notices {
     private LocalDateTime updatedAt;
 
     private LocalDate endDate;
+
+    @Column(columnDefinition = "BOOLEAN DEFAULT TRUE")
+    private boolean visible;
 
     @ManyToOne(fetch = FetchType.LAZY)      // 다대일 관계
     @JoinColumn(name = "category", referencedColumnName = "id", insertable = false, updatable = false)
