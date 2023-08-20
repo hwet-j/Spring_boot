@@ -1,4 +1,4 @@
-package com.coding.project.config;
+package com.coding.project.common.config;
 
 
 /*
