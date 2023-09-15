@@ -1,0 +1,44 @@
+server:
+  port: 8080
+
+# Enable Spring DevTools for Live Reload
+spring:
+  devtools:
+    livereload:
+      enabled: true
+
+  # DATABASE
+  ## Database URL
+  datasource:
+    url: jdbc:mysql://152.67.216.37:3306/spring_boot1?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+    ## Database Driver Class
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    ## Database Username : The 'root' user doesn't need to be configured.
+    username: hwet
+    ## Database Password : The 'root' user doesn't need to be configured.
+    password: masterPW1!
+
+  # JPA
+  ## Hibernate Dialect
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+    # Show SQL queries in logs
+    show-sql: true
+    # DDL - Automatically update database schema if needed
+    hibernate:
+      ddl-auto: update
+    # Format SQL queries for better readability
+  mvc:
+    format:
+      date: yyyy-MM-dd
+
+# Kakao API
+kakao:
+  client:
+    id: 195bcdd141edab2efa71fd1a68f9b665
+    secret: slMrOmDTgKQy6LaWr6MtbYoQDQi35JVC
+  redirect:
+    url: http://localhost:8080/kakao/callback

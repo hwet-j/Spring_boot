@@ -1,9 +1,6 @@
 package com.coding.project.domain.entitiy.notices;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -13,6 +10,7 @@ import javax.persistence.*;
 @Table(name = "notices_tags")
 @Getter
 @Setter
+@Builder
 public class NoticesTags {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

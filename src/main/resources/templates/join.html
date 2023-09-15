@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>회원 가입</title>
+</head>
+<body>
+<form th:action="@{/join}" method="post" th:object="${memberDTO}">
+    <label for="name">이름:</label>
+    <input type="text" th:field="*{name}" >
+    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span><br><br>
+
+    <label for="nickname">닉네임:</label>
+    <input type="text" th:field="*{nickname}" >
+    <span th:if="${#fields.hasErrors('nickname')}" th:errors="*{nickname}"></span><br><br>
+
+    <label for="password">비밀번호:</label>
+    <input type="password" th:field="*{password}" >
+    <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span><br><br>
+
+    <label for="email">이메일:</label>
+    <input type="email" th:value="${kakaoEmail}" name="email" readonly>
+    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span><br><br>
+
+    <label for="birthDate">생년월일:</label>
+    <input type="date" th:field="*{birthDate}" >
+    <span th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}"></span><br><br>
+
+    <label for="gender">성별:</label>
+    <select th:field="*{gender}" >
+        <option value="남자">남자</option>
+        <option value="여자">여자</option>
+    </select><br><br>
+
+    <label for="allowEmail">메일 허용:</label>
+    <input type="checkbox" th:field="*{allowEmail}" value="true"><br><br>
+
+    <input type="submit" value="가입하기">
+</form>
+</body>
+</html>

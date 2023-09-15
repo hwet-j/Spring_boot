@@ -17,8 +17,18 @@
             <li><a href="/">Home</a></li>
             <li><a href="/notices/list">Notice</a></li>
             <li><a href="../elements.html">Elements</a></li>
-            <li><a href="#">Log In</a></li>
-            <li><a href="/account/join">Sign Up</a></li>
+            <!-- 로그인한 경우 -->
+            <li th:if="${authentication != null}">
+                <a href="/logout">Logout</a>
+            </li>
+
+            <!-- 로그인하지 않은 경우 -->
+            <li th:unless="${authentication != null}">
+                <a href="/login">Log In</a>
+            </li>
+            <li th:unless="${authentication != null}">
+                <a href="/join">Sign Up</a>
+            </li>
         </ul>
 
         <a href="#" class="close">Close</a>

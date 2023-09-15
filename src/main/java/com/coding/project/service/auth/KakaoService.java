@@ -16,6 +16,7 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class KakaoService {
 
+    /* 카카오 API 관련 정보 가져오기 application.yml에 입력된 정보 */
     @Value("${kakao.client.id}")
     private String KAKAO_CLIENT_ID;
 
@@ -44,14 +45,16 @@ public class KakaoService {
 
         try {
             HttpHeaders headers = new HttpHeaders();
+
+            // 요청 데이터 타입 설정
             headers.add("Content-type", "application/x-www-form-urlencoded");
 
             MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
-            params.add("grant_type"   , "authorization_code");
-            params.add("client_id"    , KAKAO_CLIENT_ID);
-            params.add("client_secret", KAKAO_CLIENT_SECRET);
-            params.add("code"         , code);
-            params.add("redirect_uri" , KAKAO_REDIRECT_URL);
+            params.add("grant_type"   , "authorization_code");      // 필수O - authorization_code로 고정
+            params.add("client_id"    , KAKAO_CLIENT_ID);           // 필수O - REST API 키
+            params.add("client_secret", KAKAO_CLIENT_SECRET);       // 필수X - 토큰 발급 시, 보안을 강화하기 위해 추가 확인하는 코드(Kakao 홈페이지에서 ON으로 설정했다면 필수임)
+            params.add("code"         , code);                      // 필수O - 인가 코드 받기 요청으로 얻은 인가 코드
+            params.add("redirect_uri" , KAKAO_REDIRECT_URL);        // 필수O - 인가 코드가 리다이렉트된 URI
 
             RestTemplate restTemplate = new RestTemplate();
             HttpEntity<MultiValueMap<String, String>> httpEntity = new HttpEntity<>(params, headers);
@@ -75,6 +78,7 @@ public class KakaoService {
         return getUserInfoWithToken(accessToken);
     }
 
+
     private KakaoDTO getUserInfoWithToken(String accessToken) throws Exception {
         //HttpHeader 생성
         HttpHeaders headers = new HttpHeaders();
@@ -92,10 +96,10 @@ public class KakaoService {
         );
 
         //Response 데이터 파싱
-        JSONParser jsonParser = new JSONParser();
-        JSONObject jsonObj    = (JSONObject) jsonParser.parse(response.getBody());
-        JSONObject account = (JSONObject) jsonObj.get("kakao_account");
-        JSONObject profile = (JSONObject) account.get("profile");
+        JSONParser jsonParser   = new JSONParser();
+        JSONObject jsonObj      = (JSONObject) jsonParser.parse(response.getBody());
+        JSONObject account      = (JSONObject) jsonObj.get("kakao_account");
+        JSONObject profile      = (JSONObject) account.get("profile");
 
         long id = (long) jsonObj.get("id");
         String email = String.valueOf(account.get("email"));

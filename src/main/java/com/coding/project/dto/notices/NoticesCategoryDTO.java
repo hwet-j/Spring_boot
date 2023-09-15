@@ -1,13 +1,10 @@
 package com.coding.project.dto.notices;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 
-@Getter
-@Setter
+@Builder
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class NoticesCategoryDTO {

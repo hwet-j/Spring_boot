@@ -1,9 +1,6 @@
 package com.coding.project.domain.entitiy.notices;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -15,6 +12,7 @@ import java.time.LocalDateTime;
 @Table(name = "notices")
 @Getter
 @Setter
+@Builder
 public class Notices {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

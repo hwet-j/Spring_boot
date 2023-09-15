@@ -1,12 +1,55 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
     <title>소셜로그인 예제</title>
+    <link th:href="@{/assets/css/main.css}" rel="stylesheet" type="text/css">
+    <noscript>
+        <link rel="stylesheet" th:href="@{/assets/css/noscript.css}" />
+    </noscript>
 </head>
-<body>
-<div>
-    <p><a th:href="@{|${kakaoUrl}|}">카카오로그인</a></p>
-    <!--<p><a th:href="@{|${naverUrl}|}">네이버로그인</a></p>-->
+<body class="is-preload">
+<div id="page-wrapper">
+
+    <!-- navigation -->
+    <header th:replace="fragments/header :: header"></header>
+    <nav th:replace="fragments/header :: menu"></nav>
+
+    <!-- Banner -->
+    <section id="banner">
+        <div class="inner">
+            <div class="logo"><span class="icon fa-gem"></span></div>
+            <h2>소셜 로그인</h2>
+            <p>테스트</p>
+        </div>
+    </section>
+
+    <!-- Wrapper -->
+    <section id="wrapper">
+
+        <!-- One -->
+        <section id="one" class="wrapper spotlight style1">
+            <div class="inner">
+                <a href="#" class="image"><img th:src="@{/css/images/pic01.jpg}" alt="" /></a>
+                <div class="content">
+                    <p><a th:href="@{|${kakaoUrl}|}">카카오로그인</a></p>
+                    <!--<p><a th:href="@{|${naverUrl}|}">네이버로그인</a></p>-->
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <section th:replace="fragments/footer :: footer"></section>
+    </section>
 </div>
+
+<!-- Scripts -->
+<script th:src="@{/assets/js/jquery.min.js}"></script>
+<script th:src="@{/assets/js/jquery.scrollex.min.js}"></script>
+<script th:src="@{/assets/js/browser.min.js}"></script>
+<script th:src="@{/assets/js/breakpoints.min.js}"></script>
+<script th:src="@{/assets/js/util.js}"></script>
+<script th:src="@{/assets/js/main.js}"></script>
+
 </body>
 </html>

@@ -1,14 +1,11 @@
 package com.coding.project.dto.notices;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
+@Builder
+@Data
 public class NoticesTagsDTO {
     private Integer id;
     private String nameEng;
