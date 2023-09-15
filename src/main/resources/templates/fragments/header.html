@@ -17,18 +17,22 @@
             <li><a href="/">Home</a></li>
             <li><a href="/notices/list">Notice</a></li>
             <li><a href="../elements.html">Elements</a></li>
-            <!-- 로그인한 경우 -->
-            <li th:if="${authentication != null}">
+            <!-- 로그인한 경우에만 "Logout" 링크를 표시 -->
+            <li th:if="${#request.isUserInRole('ROLE_USER')}">
                 <a href="/logout">Logout</a>
             </li>
 
-            <!-- 로그인하지 않은 경우 -->
-            <li th:unless="${authentication != null}">
+
+            <!-- 로그인하지 않은 경우에만 "Log In" 링크를 표시 -->
+            <li th:unless="${#request.isUserInRole('ROLE_USER')}">
                 <a href="/login">Log In</a>
             </li>
-            <li th:unless="${authentication != null}">
+
+            <!-- 로그인하지 않은 경우에만 "Sign Up" 링크를 표시 -->
+            <li th:unless="${#request.isUserInRole('ROLE_USER')}">
                 <a href="/join">Sign Up</a>
             </li>
+
         </ul>
 
         <a href="#" class="close">Close</a>
