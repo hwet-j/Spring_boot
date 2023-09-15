@@ -34,17 +34,13 @@ public class KakaoController {
     @GetMapping("/callback")
     public ModelAndView callback(HttpServletRequest request, HttpServletResponse response, ModelAndView mv, MemberDTO memberDTO) throws Exception {
         KakaoDTO kakaoInfo = kakaoService.getKakaoInfo(request.getParameter("code"));
-
+        System.out.println(kakaoInfo.getId());
+        System.out.println(kakaoInfo.getNickname());
+        System.out.println(kakaoInfo.getEmail());
         Member user = authService.findByEmail(kakaoInfo.getEmail());
 
         /* 카카오 API로 부터 전달 받은 객체에서 Email값으로 DB를 조회 */
         if (user != null){
-
-            System.out.println(user.getPassword());
-            System.out.println(user.getPassword());
-            System.out.println(user.getPassword());
-            System.out.println(user.getPassword());
-            System.out.println(user.getPassword());
             // 로그인 처리 (비밀번호를 입력해야 하므로 암호화는 다른 방식으로 작업하는게 좋을듯함 - JWT 방식?)
             Authentication kakaoUsernamePassword = new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword());
             System.out.println("111111111");
@@ -52,6 +48,7 @@ public class KakaoController {
             System.out.println("222222222");
             SecurityContextHolder.getContext().setAuthentication(authentication);
             System.out.println("333333333");
+
             // 메인페이지로 이동
             mv.setViewName("redirect:/login");
         } else {
